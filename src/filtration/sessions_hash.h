@@ -96,11 +96,21 @@ struct MapperImpl
         const uint32_t* s { key.ip.v6.addr_uint32[0] };
         const uint32_t* d { key.ip.v6.addr_uint32[1] };
 
-        if(s[0] != d[0]) return (s[0] < d[0]) ? Session::Source : Session::Destination;
-        if(s[1] != d[1]) return (s[1] < d[1]) ? Session::Source : Session::Destination;
-        if(s[2] != d[2]) return (s[2] < d[2]) ? Session::Source : Session::Destination;
+        if(s[0] != d[0])
+        {
+            return (s[0] < d[0]) ? Session::Source : Session::Destination;
+        }
 
-                         return (s[3] < d[3]) ? Session::Source : Session::Destination;
+        if(s[1] != d[1])
+        {
+            return (s[1] < d[1]) ? Session::Source : Session::Destination;
+        }
+
+        if(s[2] != d[2])
+        {
+            return (s[2] < d[2]) ? Session::Source : Session::Destination;
+        }
+        return (s[3] < d[3]) ? Session::Source : Session::Destination;
     }
 
     static inline void copy_ipv6(uint32_t dst[4], const uint8_t src[16])

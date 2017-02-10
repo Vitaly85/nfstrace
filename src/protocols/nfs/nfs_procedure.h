@@ -108,10 +108,13 @@ public:
 
     inline ~NFSProcedure()
     {
-        if(pres) xdr_free((xdrproc_t)proc_t_of(res), (char*)&res      );
-                 xdr_free((xdrproc_t)xdr_replymsg,   (char*)&reply);
-                 xdr_free((xdrproc_t)proc_t_of(arg), (char*)&arg      );
-                 xdr_free((xdrproc_t)xdr_callmsg,    (char*)&call );
+        if(pres)
+        {
+            xdr_free((xdrproc_t)proc_t_of(res), (char*)&res  );
+            xdr_free((xdrproc_t)xdr_replymsg,   (char*)&reply);
+            xdr_free((xdrproc_t)proc_t_of(arg), (char*)&arg  );
+            xdr_free((xdrproc_t)xdr_callmsg,    (char*)&call );
+        }
     }
 
     // pointers to procedure specific argument and result
